@@ -1,0 +1,56 @@
+<p>{{menuopc}}</p>
+
+<div class="alert alert-primary alert-dismissible fade show" role="alert" *ngIf="mostrarAlert">
+    <strong>¡Nuevas películas!</strong> Revise la página con frecuencia para ver las últimas novedades.
+    <button type="button" class="close btn-close" data-dismiss="alert" aria-label="Close" (click)="cerrarAlert()">
+    </button>
+</div>
+
+<div class="box">
+    <table class="peliculas">
+      <tr class="tabla">
+        <th class="titulop">PELICULA</th>
+        <th class="tituloa">ACTOR PRINCIPAL</th>
+        <th class="titulod">DURACION</th>
+        <th class="titulog">GENERO</th>
+      </tr>
+      <tr class="pelicula" *ngFor="let p of peliculas">
+        <img [src]="p.image" alt="..." width="160px" height="180px">
+        <td class="nombrepelicula">{{p.nombre}}</td>
+        <td class="actor">{{p.actor}}</td>
+        <td class="duracion">{{p.duracion}}</td>
+        <td class="genero">{{p.genero}}</td>
+      </tr>
+    </table> 
+
+    <!-- DOBLE BINDING se actualiza automaticamente en la vista -->
+    <div [ngStyle]="{'color':respuesta>5?'red':'black'}">CUENTANOS</div>
+    <div [ngStyle]="{'color':respuesta>5?'red':'black'}">¿CUAL ES TU GENERO FAVORITO?</div>
+    <input [(ngModel)]="pregunta" type="text" class="form-control">
+
+    <!-- BINDING DE LA VISTA AL MODELO Y USO DEL NGSTYLE-->
+    <br>
+    <div [ngStyle]="{'color':respuesta>5?'red':'black'}">¿CUANTAS PELICULAS DE <b>{{pregunta}}</b> HAS VISTO? <b>{{respuesta}}</b></div>
+    <br>
+    <button (click)="contador();" class="btn btn-primary"> + </button>
+
+</div>
+
+<hr>
+
+<h2 class="catalog-title">Reestrenos</h2>
+<h3 class="catalog-title">Traído por Cinema Kristal</h3>
+<h5 class="catalog-title">Oferta de Verano (Próximamente)</h5>
+
+<div class="card-columns">
+
+    <ng-container *ngFor="let movie of pelis.results">
+        <div class="card">
+          <img src="http://www.themoviedb.org/t/p/w600_and_h900_bestv2/{{movie.poster_path}}" class="card-img-top" alt="...">
+        <div class="card-body">
+            <h5 class="card-title">{{movie.title}}</h5>
+            <h4><span class="badge badge-secondary" matTooltip="Éstas películas llegan hasta Julio 2023">Proximamente</span></h4>
+        </div>    
+        </div>
+    </ng-container>
+</div>

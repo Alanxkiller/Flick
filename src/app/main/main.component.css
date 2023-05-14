@@ -1,0 +1,160 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+}
+
+.main-img {
+  width: 700px;
+  align-self: center;
+}
+
+/* Carrousel */
+
+.carousel-item h4,
+.carousel-item p {
+  padding: 10px;
+  background-color: #0008;
+}
+
+/* Grid Movie Section */
+
+.movie-section-title {
+  margin: 10px;
+  text-align: center;
+}
+
+.movie-section {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  margin: 10px;
+  padding: 15px;
+  border-radius: 20px;
+  border: 1px solid #d0021b;
+  gap: 40px;
+  background-color: #04203f;
+}
+
+.movie-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  color: #fff;
+}
+
+.poster-container {
+  overflow: hidden;
+  width: 250px;
+  border-radius: 15px;
+}
+
+.poster-container img {
+  width: 250px;
+  height: 380px;
+  border-radius: 15px;
+  transition: all 0.2s;
+}
+
+.poster-container img:hover {
+  transform: scale(1.1);
+}
+
+.link {
+  grid-column: 4;
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* Main Article */
+
+.main-art {
+  margin: 10px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.main-art h2 {
+  grid-column: span 1;
+  place-self: center;
+  color: #d0021b;
+}
+
+.main-art p {
+  background-color: #04203f;
+  padding: 10px;
+  color: #fff;
+  border-radius: 0 20px 20px 0;
+  text-align: center;
+}
+
+/* Sponsors */
+
+.sponsors {
+  margin: 50px 20px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.sponsors h1 {
+  text-align: center;
+}
+
+.sponsor-img {
+  display: flex;
+  justify-content: space-between;
+}
+
+.sponsor-img img {
+  width: 280px;
+  height: 215px;
+  border-radius: 50%;
+  border: 1px solid #04203f;
+}
+
+/* Modal */
+.modal-content{
+  width: 850px;
+}
+
+.modal-header,
+.modal-body {
+  color: #04203f;
+}
+
+.modal-body img {
+  width: 150px;
+  height: 210px;
+}
+
+.modal-body form {
+  
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 30px;
+}
+
+.modal-body div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 10px;
+}
+
+.pay-section {
+  gap: 20px !important;
+}
+
+.reg-section {
+  gap: 10px !important;
+}
+
+#modalFinal .modal-content{
+  width: 500px;
+}

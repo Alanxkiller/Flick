@@ -1,0 +1,108 @@
+
+<!-- <p>{{inicio.navabout}}</p> -->
+
+<h1 class="display-3">"Proyecto Universitario sin fines lucrativos UAA"</h1>
+
+<div class="card mb-3" style="max-width: 540px;">
+  <div class="row g-0">
+    <div class="col-md-4">
+      <img src="../../assets/img/laMaguis.jpg" class="img-fluid rounded-start" alt="...">
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title">Claudia Margarita Sandoval Chavez</h5>
+        <p class="card-text">La mamá de los pollitos y la que manda en el grupo (O al menos eso cree). Una persona con mucho valor y potencial a la hora de liderar</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card mb-3" style="max-width: 540px;">
+  <div class="row g-0">
+    <div class="col-md-4">
+      <img src="../../assets/img/elSergio.jpg" class="img-fluid rounded-start" alt="...">
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title">Sergio Enrique Galvan Barrios</h5>
+        <p class="card-text">¿Que puedo decir de el? es todo un papucho y un crack en todo lo que hace</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card mb-3" style="max-width: 540px;">
+  <div class="row g-0">
+    <div class="col-md-4">
+      <img src="../../assets/img/elManu.jpg" class="img-fluid rounded-start" alt="...">
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title">Josue Emmanuel Uranga Calzada</h5>
+        <p class="card-text">Loki, el dios de las mentiras. Todo un capo es una persona muy sociable aunque un poco introvertido, si necesitas un abrazo manu siempre esta disponible</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card mb-3" style="max-width: 540px;">
+  <div class="row g-0">
+    <div class="col-md-4">
+      <img src="../../assets/img/elAlan.jpeg" class="img-fluid rounded-start" alt="...">
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title">Alan Axel Escobar Calzada</h5>
+        <p class="card-text">El demond en cualquier juego que toca, no cabe duda que en su vida secreta es streamer</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card mb-3" style="max-width: 540px;">
+  <div class="row g-0">
+    <div class="col-md-4">
+      <img src="../../assets/img/elLalo.jpg" class="img-fluid rounded-start" alt="...">
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title">Eduardo</h5>
+        <p class="card-text">Apenas se incorporó, pero nos caes bien. A toda madre un desmadre, feliz navidad</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card mb-3" style="max-width: 540px;">
+  <div class="row g-0">
+    <div class="col-md-4">
+      <img src="../../assets/img/io.jpg" class="img-fluid rounded-start" alt="...">
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title">Jose Angel Flores Esparza</h5>
+        <p class="card-text">Una garrocha con patas y depresion. No se que escribir de mi</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="map-container">
+    <p>¡Tenemos una sede donde nos puedes encontrar para obtener descuentos adicionales!</p>
+    <p>Recuerda, estos descuentos solo aplican de forma presencial. ¡Visitanos pronto!</p>
+    <google-map height="400px"
+                width="750px"
+                [center]="center"
+                [zoom]="zoom">
+    
+    <map-marker *ngFor="let marker of markers"
+                [position]="marker.position"></map-marker>
+    
+    <map-info-window>Nuestra sede!</map-info-window>
+    </google-map>
+    <p>{{menuopc}}</p>
+</div>
+
+
+

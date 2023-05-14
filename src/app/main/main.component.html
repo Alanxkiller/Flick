@@ -1,0 +1,199 @@
+<div class="content">
+
+    <img class="main-img" src="../../assets/img/flick 2.png" alt="">
+    <!-- Navbar -->
+
+    <!-- Carrousel -->
+    <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="false">
+
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="../../assets/img/mario.png" class="d-block w-100" alt="...">
+                <div class="carousel-caption d-none d-md-block">
+                    <h4>Mario Bros: La Película</h4>
+                    <p>Últimas funciones. ¡NO TE LA PIERDAS!</p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="../../assets/img/flash.png" class="d-block w-100" alt="...">
+                <div class="carousel-caption d-none d-md-block">
+                    <h4>The Flash (Próximamente)</h4>
+                    <p>DC cada que quiere reiniciar su universo: "Corre Barry, ¡Corre!"</p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="../../assets/img/barbie.webp" class="d-block w-100" alt="...">
+                <div class="carousel-caption d-none d-md-block">
+                    <h4>Barbie (Próximamente)</h4>
+                    <p>Te lo ruego Mattel, que salga Max Steel en la película</p>
+                </div>
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
+            data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions"
+            data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+
+    <!-- Grid Section -->
+    <h2 class="movie-section-title">¡Compra o Reserva!</h2>
+    <section class="movie-section">
+
+        <ng-container *ngFor="let poster of posters; let i = index">
+            <div class="movie-item">
+                <div class="poster-container">
+                    <img [src]="poster.img" alt="">
+                </div>
+                <h4>{{poster.titulo}}</h4>
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target=".payModal"
+                    [attr.data-bs-target]="'#mov-'+i">{{poster.pagar}}</button>
+                <!-- Modal de Pago -->
+                <div class="modal fade" [attr.id]="'mov-'+i" tabindex="-1" aria-labelledby="exampleModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="exampleModalLabel">Completar Pago</h1>
+                            </div>
+                            <div class="modal-body">
+                                <form [formGroup]="formulario">
+                                    <!-- Información de la película -->
+                                    <div class="info-movie">
+                                        <h4>{{poster.titulo}}</h4>
+                                        <img [src]="poster.img" alt="">
+                                    </div>
+                                    <!-- Sección de Pago -->
+                                    <div class="pay-section">
+                                        <h5>Seleccione la Fecha y hora</h5>
+                                        <input type="datetime-local" #fecha [(ngModel)]="checkDate"
+                                            [ngModelOptions]="{standalone: true}" class="form-control">
+                                        <mat-slide-toggle color="primary">Recibir notificación de
+                                            fecha</mat-slide-toggle>
+                                        <button type="btn" class="btn btn-dark" id="submit"
+                                            (click)="onCheckDate(fecha.value)">Verificar</button>
+                                        <div *ngIf="!click">
+                                            <div class="alert alert-secondary" role="alert">
+                                                Ingrese una fecha para continuar
+                                            </div>
+                                        </div>
+                                        <div *ngIf="libre && click">
+                                            <div class="alert alert-success" role="alert">
+                                                Fecha Disponible
+                                            </div>
+                                        </div>
+                                        <div *ngIf="!libre && click">
+                                            <div class="alert alert-danger" role="alert">
+                                                Fecha no disponible
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Sección de datos -->
+                                    <div class="reg-section">
+                                        <h5>Ingrese sus datos</h5>
+                                        <div>
+                                            <span>Nombre:</span>
+                                            <input type="text" formControlName="nombre" class="form-control" id="nombre"
+                                                [ngClass]="{'is-invalid': formulario.controls['nombre'].invalid && formulario.controls['nombre'].touched}" />
+                                            <div
+                                                *ngIf="formulario.controls['nombre'].touched && formulario.controls['nombre'].invalid">
+                                                <div *ngIf="formulario.controls['nombre'].errors?.['required']">El
+                                                    nombre es requerido.</div>
+                                                <div *ngIf="formulario.controls['nombre'].errors?.['minlength']">El
+                                                    nombre debe tener al menos 3 caracteres.</div>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <span>Boletos:</span>
+                                            <input type="number" formControlName="cif" class="form-control" id="cif"
+                                                [ngClass]="{'is-invalid': formulario.controls['cif'].invalid && formulario.controls['cif'].touched}" />
+                                            <div
+                                                *ngIf="formulario.controls['cif'].touched && formulario.controls['cif'].invalid">
+                                                <div *ngIf="formulario.controls['cif'].errors?.['required']">Es requerido el número de boletos.</div>
+                                                <div *ngIf="formulario.controls['cif'].errors?.['pattern']">El ID solo
+                                                    puede contener caracteres alfanuméricos.</div>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <span>Cine:</span>
+                                            <input type="text" formControlName="direccion" class="form-control"
+                                                id="direccion"
+                                                [ngClass]="{'is-invalid': formulario.controls['direccion'].invalid && formulario.controls['direccion'].touched}" />
+                                            <div
+                                                *ngIf="formulario.controls['direccion'].touched && formulario.controls['direccion'].invalid">
+                                                <div *ngIf="formulario.controls['direccion'].errors?.['required']">
+                                                    El Cine es requerido
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <button [disabled]="formulario.invalid" (click)="nuevoCliente()"
+                                                class="btn btn-primary" data-bs-dismiss="modal">
+                                                Finalizar
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary"
+                                    data-bs-dismiss="modal" >Cancelar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </ng-container>
+    </section>
+    
+    <!-- Modal de completado -->
+    <div class="modal" tabindex="-1" id="modalFinal">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-body">
+              <p>Disfrute su película</p>
+              <p>{{mensaje}}</p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    <!-- Modal de Fecha -->
+    <div class="modal" tabindex="-1" id="fechaModal">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-body">
+              <p>Haz seleccionado una fecha ocupada o no seleccionaste la fecha</p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            </div>
+          </div>
+        </div>
+      </div>  
+    <!-- Main Article -->
+    <main class="main-art">
+        <h2>¿Qué es Flick?</h2>
+        <p>Flick es tu página de confianza para comprar o reservar tus boletos de las películas más populares del
+            momento. Contamos con el apoyo de 15 cines alrededor de todo México. En Flick puedes encontrar descuentos y
+            otras sorpresas para que tu experiencia sea más satisfactoria y sencilla.</p>
+    </main>
+
+    <section class="sponsors">
+        <h1>Nuestros principales socios</h1>
+        <div class="sponsor-img">
+            <img src="../../assets/img/cinepolis.jpg" alt="">
+            <img src="../../assets/img/cinemex.jpg" alt="">
+            <img src="../../assets/img/cinemagic.jpg" alt="">
+            <img src="../../assets/img/kristal.png" alt="">
+        </div>
+    </section>
+</div>

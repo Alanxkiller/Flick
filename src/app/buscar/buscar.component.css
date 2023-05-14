@@ -1,0 +1,18 @@
+.search-bar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .text-center {
+    text-align: center;
+  }
+
+  .imagen-pelicula {
+    max-width: 100%;
+    height: auto;
+  }
+
+  .card {
+    margin-bottom: 20px;
+  }
