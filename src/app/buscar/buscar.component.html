@@ -1,34 +1,38 @@
 <div class="container">
-    <div class="row">
-      <div class="col-md-8 offset-md-2">
-        <div class="text-center">
-          <h1>Buscador de películas</h1>
-          <form>
-            <div class="input-group mb-3">
-              <input type="text" class="form-control" placeholder="Escribe el nombre de una película" [(ngModel)]="query" name="query" #buscarInput
-              (keyup)="keyUp(buscarInput.value)">
-              <button class="btn btn-primary" type="button" (click)="buscar()">Buscar</button>
-            </div>
-          </form>
-          <app-buscar-hijo [FuncionBusca]="FuncionBuscaG" (borrar)="borrarTexto($event)"></app-buscar-hijo>
+  <div class="row">
+    <div class="col-sm-8 offset-sm-2">
+      <h1 class="mx-4">Buscar Component</h1>
+      <div class="input-group">
+        <input class="form-control" #buscarInput (keyup)="keyUp(buscarInput.value)">
+        <div class="input-group-append">
+          <button class="btn btn-primary" type="button" (click)="buscar()">Buscar</button>
         </div>
-        <div *ngIf="resultados.length > 0">
-          <h2 class="text-center">Resultados de búsqueda:</h2>
-          <div class="row">
-            <div class="col-md-4 mb-4" *ngFor="let pelicula of resultados">
-              <div class="card h-100">
-                <img src="{{ pelicula.imagen }}" class="card-img-top imagen-pelicula" alt="{{ pelicula.nombre }}">
-                <div class="card-body">
-                  <h5 class="card-title text-center">{{ pelicula.nombre }}</h5>
-                  <p class="card-text">{{ pelicula.descripcion }}</p>
-                </div>
+      </div>
+      <div class="col-sm-12">
+        <app-buscar-hijo [FuncionBusca]="query" (borrar)="borrarTexto()"></app-buscar-hijo>
+      </div>
+      <div *ngIf="loading" class="progress">
+        <div class="progress-bar" role="progressbar" [style.width.%]="progress">
+          {{ progress }}%
+        </div>
+      </div>
+      <div *ngIf="resultados.length > 0">
+        <h2 class="text-center">Resultados de búsqueda:</h2>
+        <div class="row">
+          <div class="col-md-4 mb-4" *ngFor="let pelicula of resultados">
+            <div class="card h-100">
+              <img src="{{ pelicula.imagen }}" class="card-img-top imagen-pelicula" alt="{{ pelicula.nombre }}">
+              <div class="card-body">
+                <h5 class="card-title text-center">{{ pelicula.nombre }}</h5>
+                <p class="card-text">{{ pelicula.descripcion }}</p>
               </div>
             </div>
           </div>
         </div>
-        <div *ngIf="resultados.length == 0 && busquedaRealizada">
-            <p class="text-center">No se encontraron resultados para "{{ query }}"</p>
-        </div>
+      </div>
+      <div *ngIf="resultados.length == 0 && busquedaRealizada">
+        <p class="text-center">No se encontraron resultados para "{{ query }}"</p>
       </div>
     </div>
   </div>
+</div>
