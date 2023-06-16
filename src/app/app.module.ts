@@ -7,6 +7,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatIcon, MatIconModule} from '@angular/material/icon';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 import { AppComponent } from './app.component';
 import { MainComponent } from './main/main.component';
@@ -26,6 +27,7 @@ import { provideAuth,getAuth } from '@angular/fire/auth';
 import { RegisterComponent } from './register/register.component';
 import { LoginPhoneComponent } from './login-phone/login-phone.component';
 import { provideFirestore,getFirestore } from '@angular/fire/firestore';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 
@@ -53,11 +55,13 @@ import { provideFirestore,getFirestore } from '@angular/fire/firestore';
     MatSlideToggleModule,
     FormsModule,
     ReactiveFormsModule,
+    MatProgressBarModule,
     MatTooltipModule,
     MatIconModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),
-    provideFirestore(() => getFirestore())
+    provideFirestore(() => getFirestore()),
+    BrowserAnimationsModule
   ],
   exports: [
     CommonModule,
