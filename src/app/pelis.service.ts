@@ -24,7 +24,7 @@ export class PelisService {
 constructor(private http:HttpClient) { }
 
 async getAll():Promise<any>{
-  console.log('firus');
+  console.log("Conexión de API exitosa");
   return new Promise(resolve=>{
     this.http.get(this.url, this.httpOptions).subscribe(data=>{
       resolve(data);
