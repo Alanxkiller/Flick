@@ -19,6 +19,16 @@ import { ActivatedRoute, ParamMap } from '@angular/router';
           <div *ngIf="loading" class="progress">
             <mat-progress-bar mode="determinate" [value]="progress"></mat-progress-bar>
           </div>
+          <div *ngIf="busquedaRealizada">
+            <h3>Resultados de búsqueda:</h3>
+            <div class="card" *ngFor="let resultado of resultados">
+              <img [src]="resultado.imagen" class="card-img-top" alt="Imagen de la película">
+              <div class="card-body">
+                <h5 class="card-title">{{ resultado.nombre }}</h5>
+                <p class="card-text">{{ resultado.descripcion }}</p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -54,6 +64,11 @@ export class BuscarComponent {
     this.loading = true;
     this.progress = 0;
     this.simulateProgress();
+    this.resultados = this.peliculas.filter(pelicula =>
+      pelicula.nombre.toLowerCase().includes(this.query.toLowerCase())
+    );
+    this.FuncionBuscaG = this.query;
+    this.busquedaRealizada = true;
   }
 
   simulateProgress() {
@@ -64,11 +79,6 @@ export class BuscarComponent {
       }, 200);
     } else {
       this.loading = false;
-      this.busquedaRealizada = true;
-      this.resultados = this.peliculas.filter(pelicula =>
-        pelicula.nombre.toLowerCase().includes(this.query.toLowerCase())
-      );
-      this.FuncionBuscaG = this.query;
     }
   }
 
