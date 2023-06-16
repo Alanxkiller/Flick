@@ -53,6 +53,7 @@
                 <h4>{{poster.titulo}}</h4>
                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target=".payModal"
                     [attr.data-bs-target]="'#mov-'+i">{{poster.pagar}}</button>
+                    
                 <!-- Modal de Pago -->
                 <div class="modal fade" [attr.id]="'mov-'+i" tabindex="-1" aria-labelledby="exampleModalLabel"
                     aria-hidden="true">

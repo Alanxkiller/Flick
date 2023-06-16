@@ -17,10 +17,16 @@ import { AboutComponent } from './about/about.component';
 import { BuscarComponent } from './buscar/buscar.component';
 import { CitasRegComponent } from './citas-reg/citas-reg.component';
 
-import { GoogleMapsModule } from '@angular/google-maps'
 import { HttpClientModule, HttpClientJsonpModule } from '@angular/common/http';
 import { LoginComponent } from './login/login.component';
 import { BuscarHijoComponent } from './buscar-hijo/buscar-hijo.component';
+import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
+import { environment } from '../environments/environment';
+import { provideAuth,getAuth } from '@angular/fire/auth';
+import { RegisterComponent } from './register/register.component';
+import { LoginPhoneComponent } from './login-phone/login-phone.component';
+import { provideFirestore,getFirestore } from '@angular/fire/firestore';
+
 
 
 @NgModule({
@@ -35,10 +41,11 @@ import { BuscarHijoComponent } from './buscar-hijo/buscar-hijo.component';
     CitasRegComponent,
     LoginComponent,
     BuscarHijoComponent,
+    RegisterComponent,
+    LoginPhoneComponent,
   ],
   imports: [
     BrowserModule,
-    GoogleMapsModule,
     HttpClientModule,    
     AppRoutingModule,
     CommonModule,
@@ -47,7 +54,10 @@ import { BuscarHijoComponent } from './buscar-hijo/buscar-hijo.component';
     FormsModule,
     ReactiveFormsModule,
     MatTooltipModule,
-    MatIconModule
+    MatIconModule,
+    provideFirebaseApp(() => initializeApp(environment.firebase)),
+    provideAuth(() => getAuth()),
+    provideFirestore(() => getFirestore())
   ],
   exports: [
     CommonModule,
