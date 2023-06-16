@@ -88,21 +88,5 @@
 </div>
 
 
-<div class="map-container">
-    <p>¡Tenemos una sede donde nos puedes encontrar para obtener descuentos adicionales!</p>
-    <p>Recuerda, estos descuentos solo aplican de forma presencial. ¡Visitanos pronto!</p>
-    <google-map height="400px"
-                width="750px"
-                [center]="center"
-                [zoom]="zoom">
-    
-    <map-marker *ngFor="let marker of markers"
-                [position]="marker.position"></map-marker>
-    
-    <map-info-window>Nuestra sede!</map-info-window>
-    </google-map>
-    <p>{{menuopc}}</p>
-</div>
-
 
 
