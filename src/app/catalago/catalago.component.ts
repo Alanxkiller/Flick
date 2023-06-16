@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap, Params } from '@angular/router';
 import { PelisService } from '../pelis.service';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-catalogo',

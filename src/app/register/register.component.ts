@@ -2,16 +2,15 @@ import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ActivatedRoute, ParamMap } from '@angular/router';
-import { UserService } from 'src/app/user.service';
-
+import { UserService } from '../user.service';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  selector: 'app-register',
+  templateUrl: './register.component.html',
+  styleUrls: ['./register.component.css']
 })
-export class LoginComponent {
-  
+export class RegisterComponent {
+
   usuarios: any = localStorage.getItem("usuarios") || [];
   
   formulario: FormGroup;
@@ -34,15 +33,6 @@ export class LoginComponent {
     this.route.paramMap.subscribe((params: ParamMap) => {
       this.menuopc = params.get('opcion');
     });
-
-    if (this.usuarios == null){
-      this.menuopc = 'No se encuentran usuarios actualmente';
-    }
-    else
-    {
-      this.menuopc = 'Hay usuarios registrados';
-    }
-    console.log(this.menuopc);
   }
 
   iniciarSesion(): void{
@@ -63,23 +53,14 @@ export class LoginComponent {
     
   }
 
-  onSubmit() {
-    console.log(this.formulario.value);
-    this.userService.login(this.formulario.value)
+   onSubmit() {
+    this.userService.register(this.formulario.value)
       .then(response => {
         console.log(response);
+        this.iniciada = true;
         this.router.navigate(['/inicio']);
       })
       .catch(error => console.log(error));
   }
 
-  onClick() {
-    this.userService.loginWithGoogle()
-      .then(response => {
-        console.log(response);
-        this.router.navigate(['/inicio']);
-      })
-      .catch(error => console.log(error))
-  }
-  
 }

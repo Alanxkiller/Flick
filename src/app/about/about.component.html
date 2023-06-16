@@ -81,28 +81,16 @@
     <div class="col-md-8">
       <div class="card-body">
         <h5 class="card-title">Jose Angel Flores Esparza</h5>
-        <p class="card-text">Una garrocha con patas y depresion. No se que escribir de mi</p>
+        <p class="card-text">El detallista y escrupuloso del grupo. Ni te darás cuenta, pero siempre te está cuidando desde  las sombras</p>
       </div>
     </div>
   </div>
 </div>
 
-
-<div class="map-container">
-    <p>¡Tenemos una sede donde nos puedes encontrar para obtener descuentos adicionales!</p>
-    <p>Recuerda, estos descuentos solo aplican de forma presencial. ¡Visitanos pronto!</p>
-    <google-map height="400px"
-                width="750px"
-                [center]="center"
-                [zoom]="zoom">
-    
-    <map-marker *ngFor="let marker of markers"
-                [position]="marker.position"></map-marker>
-    
-    <map-info-window>Nuestra sede!</map-info-window>
-    </google-map>
-    <p>{{menuopc}}</p>
+<div>
+  <app-contacto-f></app-contacto-f>
 </div>
+
 
 
 

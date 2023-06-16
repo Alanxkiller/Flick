@@ -8,7 +8,7 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
+            <ul class="navbar-nav ml-5">
                 <li class="nav-item">
                     <a class="nav-link" aria-current="page" [routerLink]="['/inicio']" routerLinkActive="active">Inicio</a>
                 </li>
@@ -21,11 +21,17 @@
                 <li class="nav-item">
                     <a class="nav-link" [routerLink]="['/inicio', 'buscar']" routerLinkActive="active">Buscar</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item" *ngIf="admin==true">
                     <a class="nav-link" [routerLink]="['/inicio', 'citas-registradas']" routerLinkActive="active">Citas registradas</a>
                 </li>
-                <li class="nav-item login">
+                <li class="nav-item login" *ngIf="isLogged==false">
                     <a class="nav-link" [routerLink]="['/inicio', opcion]" routerLinkActive="active">Iniciar Sesión</a>
+                </li>
+                <li class="nav-item login" *ngIf="isLogged==false">
+                    <a class="nav-link" [routerLink]="['/inicio', 'register']" routerLinkActive="active">Registrarse</a>
+                </li>
+                <li class="nav-item" *ngIf="isLogged==true">
+                <button (click)="onClick()" class="btn btn-outline-danger ml-4">Salir</button>
                 </li>
             </ul>
         </div>
