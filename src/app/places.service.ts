@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Firestore, collection, addDoc, collectionData, doc, deleteDoc, query, where} from '@angular/fire/firestore';
+import { Firestore, collection, addDoc, collectionData, doc, deleteDoc, query, where, getCountFromServer} from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 
 import Place from './interfaces/place.interface';
@@ -53,6 +53,13 @@ export class PlacesService {
   deletePlace(place: Place) {
     const placeDocRef = doc(this.firestore, `citas/${place.id}`);
     return deleteDoc(placeDocRef);
+  }
+
+  async getPlacesCount(direccion: Place["direccion"]): Promise<number> {
+    const placeRef = collection(this.firestore, 'citas');
+    const q = query(placeRef, where("direccion", "==", direccion));
+    const snapshot = await getCountFromServer(q);
+    return snapshot.data().count;
   }
 
 }

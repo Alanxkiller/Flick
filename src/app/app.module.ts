@@ -30,6 +30,8 @@ import { ContactoFComponent } from './contacto-f/contacto-f.component';
 import { QRComponent } from './qr/qr.component';
 import { QRCodeModule } from 'angularx-qrcode';
 import { MisCitasComponent } from './mis-citas/mis-citas.component';
+import { BarChartComponent } from './bar-chart/bar-chart.component';
+import { LineChartComponent } from './line-chart/line-chart.component';
 
 
 
@@ -50,6 +52,8 @@ import { MisCitasComponent } from './mis-citas/mis-citas.component';
     ContactoFComponent,
     QRComponent,
     MisCitasComponent,
+    BarChartComponent,
+    LineChartComponent,
   ],
   imports: [
     BrowserModule,
