@@ -28,6 +28,7 @@ import { provideAuth,getAuth } from '@angular/fire/auth';
 import { RegisterComponent } from './register/register.component';
 import { LoginPhoneComponent } from './login-phone/login-phone.component';
 import { provideFirestore,getFirestore } from '@angular/fire/firestore';
+import { AyudaComponent } from './ayuda/ayuda.component';
 
 
 
@@ -46,6 +47,7 @@ import { provideFirestore,getFirestore } from '@angular/fire/firestore';
     BuscarHijoComponent,
     RegisterComponent,
     LoginPhoneComponent,
+    AyudaComponent,
   ],
   imports: [
     BrowserModule,
