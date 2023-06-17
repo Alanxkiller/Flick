@@ -7,3 +7,26 @@
 .display-3{
     text-align: center;
 }
+
+.general{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}
+
+.col-md-8{
+    background-color: #04203f;
+}
+
+.card-title{
+    color: aliceblue;
+    font-weight: bold;
+    text-align: center;
+}
+
+.card-text{
+    color: aliceblue;
+    text-align: center;
+}

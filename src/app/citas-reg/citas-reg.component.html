@@ -13,11 +13,11 @@
         </thead>
         <tbody>
           <tr *ngFor="let place of places">
-            <td>{{ place.nombre }}</td>
+            <td>{{ place.nombre | letrasMayusculas }}</td>
             <td>{{ place.cif }}</td>
-            <td>{{ place.direccion }}</td>
-            <td>{{ place.fecha }}</td>
-            <td>{{ place.especial }}</td>
+            <td>{{ place.direccion | letrasMayusculas }}</td>
+            <td>{{ place.fecha}}</td>
+            <td>{{ place.especial | letrasMinusculas}}</td>
           </tr>
         </tbody>
       </table>
@@ -38,10 +38,10 @@
         <tbody>
           <tr *ngFor="let place of places2">
             <td>{{ place.nombre }}</td>
-            <td>{{ place.cif }}</td>
-            <td>{{ place.direccion }}</td>
+            <td>{{ place.cif | numerosLetras}}</td>
+            <td>{{ place.direccion | letrasMayusculas }}</td>
             <td>{{ place.fecha }}</td>
-            <td>{{ place.especial }}</td>
+            <td>{{ place.especial | letrasMinusculas}}</td>
           </tr>
         </tbody>
       </table>
@@ -62,8 +62,8 @@
       <tbody>
 
         <tr *ngFor="let place of places">
-          <td>{{ place.direccion }}</td>
-          <td>{{ place.cif }}</td>
+          <td>{{ place.direccion | letrasMayusculas}}</td>
+          <td>{{ place.cif}}</td>
           <td>{{ place.fecha }}</td>
         </tr>
         

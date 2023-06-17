@@ -28,6 +28,9 @@ import { provideAuth,getAuth } from '@angular/fire/auth';
 import { RegisterComponent } from './register/register.component';
 import { LoginPhoneComponent } from './login-phone/login-phone.component';
 import { provideFirestore,getFirestore } from '@angular/fire/firestore';
+import { LetrasMayusculasPipe } from './letras-mayusculas.pipe';
+import { LetrasMinusculasPipe } from './letras-minusculas.pipe';
+import { NumerosLetrasPipe } from './numeros-letras.pipe'; 
 
 
 
@@ -46,6 +49,9 @@ import { provideFirestore,getFirestore } from '@angular/fire/firestore';
     BuscarHijoComponent,
     RegisterComponent,
     LoginPhoneComponent,
+    LetrasMayusculasPipe,
+    LetrasMinusculasPipe,
+    NumerosLetrasPipe
   ],
   imports: [
     BrowserModule,

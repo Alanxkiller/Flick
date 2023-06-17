@@ -33,4 +33,12 @@ article {
     color: #04203f;
     background-color: aliceblue;
   }
+
+  th{
+    text-align: center;
+  }
+
+  td{
+    text-align: center;
+  }
   
