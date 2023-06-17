@@ -29,6 +29,7 @@ import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 import { ContactoFComponent } from './contacto-f/contacto-f.component';
 import { QRComponent } from './qr/qr.component';
 import { QRCodeModule } from 'angularx-qrcode';
+import { MisCitasComponent } from './mis-citas/mis-citas.component';
 
 
 
@@ -48,6 +49,7 @@ import { QRCodeModule } from 'angularx-qrcode';
     LoginPhoneComponent,
     ContactoFComponent,
     QRComponent,
+    MisCitasComponent,
   ],
   imports: [
     BrowserModule,

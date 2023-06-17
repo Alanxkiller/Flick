@@ -21,6 +21,9 @@
                 <li class="nav-item">
                     <a class="nav-link" [routerLink]="['/inicio', 'buscar']" routerLinkActive="active">Buscar</a>
                 </li>
+                <li class="nav-item"  *ngIf="isLogged==true">
+                    <a class="nav-link" [routerLink]="['/inicio', 'mis-citas']" routerLinkActive="active">Mis citas</a>
+                </li>
                 <li class="nav-item" *ngIf="admin==true">
                     <a class="nav-link" [routerLink]="['/inicio', 'citas-registradas']" routerLinkActive="active">Citas registradas</a>
                 </li>

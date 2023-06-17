@@ -31,7 +31,10 @@ export class NavbarComponent {
         // User is signed in, see docs for a list of available properties
         // https://firebase.google.com/docs/reference/js/firebase.User
         const userEmail = user.email;
+        const userUID = user.uid;
+        localStorage.setItem("userUID", userUID);
         console.log('Email: ', userEmail);
+        console.log('User: ', user);
         this.isLogged = true;
         if (userEmail == 'alanaxel121@gmail.com')
         {
@@ -68,6 +71,7 @@ export class NavbarComponent {
         this.router.navigate(['/inicio/register']);
         this.admin = false;
         this.isLogged = false;
+        localStorage.removeItem('userUID');
       })
       .catch(error => console.log(error));
   }

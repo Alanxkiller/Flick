@@ -168,14 +168,26 @@ export class MainComponent implements OnInit {
 
           this.clieDes.push(clienteEspecial);
 
-          const fechaForm = { ...this.formulario.value, fecha: this.nuevaFecha, especial: OPCIONES_ESPECIAL.SI };
+          const fechaForm = {
+             ...this.formulario.value, 
+             fecha: this.nuevaFecha, 
+             especial: OPCIONES_ESPECIAL.SI,
+             userUID: localStorage.getItem("userUID")
+            };
+
           const response = await this.placesService.addPlace(fechaForm);
           const response2 = await this.placesService.addPlace2(fechaForm);
 
           localStorage.setItem("clieDes", JSON.stringify(this.clieDes));
           this.mensaje = `Felicidades. Por su compra de ${this.formulario.value.cif} boletos. Usted tendrá un descuento especial (Puede consulitarlo en la tabla de fechas registradas)`;
         } else {
-          const fechaForm = { ...this.formulario.value, fecha: this.nuevaFecha, especial: OPCIONES_ESPECIAL.NO };
+          const fechaForm = { 
+            ...this.formulario.value, 
+            fecha: this.nuevaFecha, 
+            especial: OPCIONES_ESPECIAL.NO,
+            userUID: localStorage.getItem("userUID") 
+          };
+          
           const response = await this.placesService.addPlace(fechaForm);
         }
         const cliente: Cliente = {

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Firestore, collection, addDoc, collectionData, doc, deleteDoc } from '@angular/fire/firestore';
+import { Firestore, collection, addDoc, collectionData, doc, deleteDoc, query, where} from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 
 import Place from './interfaces/place.interface';
