@@ -7,6 +7,9 @@ import { ActivatedRoute, ParamMap, Params } from '@angular/router';
   templateUrl: './ayuda.component.html',
   styleUrls: ['./ayuda.component.css']
 })
+
+
+
 export class AyudaComponent implements OnInit {
   menuopc!: string | null;
   constructor(private rutaActiva: ActivatedRoute) {
@@ -16,5 +19,5 @@ export class AyudaComponent implements OnInit {
       this.menuopc = params.get('opcion');
     });
   }
-   
+ 
 }
