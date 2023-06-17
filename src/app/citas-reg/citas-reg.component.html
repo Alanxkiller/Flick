@@ -1,6 +1,5 @@
 <div class="contenedor">
     <h2>Citas registradas</h2>
-    <div *ngIf="!clientes?.length">No hay clientes por el momento</div>
     <div>
       <table class="table table-striped">
         <thead>
@@ -9,20 +8,22 @@
             <th>Boletos</th>
             <th>Cine</th>
             <th>Fecha Ocupada</th>
+            <th>Especial?</th>
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let cliente of clientes">
-            <td>{{ cliente.nombre }}</td>
-            <td>{{ cliente.cif }}</td>
-            <td>{{ cliente.direccion }}</td>
-            <td>{{ cliente.fecha }}</td>
+          <tr *ngFor="let place of places">
+            <td>{{ place.nombre }}</td>
+            <td>{{ place.cif }}</td>
+            <td>{{ place.direccion }}</td>
+            <td>{{ place.fecha }}</td>
+            <td>{{ place.especial }}</td>
           </tr>
         </tbody>
       </table>
     </div>
     <h2>Citas con Descuento</h2>
-    <div *ngIf="!clieDes?.length">No hay clientes con descuento</div>
+    <!--<div *ngIf="!clieDes?.length">No hay clientes con descuento</div>-->
     <div>
       <table class="table table-striped">
         <thead>
@@ -31,18 +32,42 @@
             <th>Boletos</th>
             <th>Cine</th>
             <th>Fecha Ocupada</th>
+            <th>Especial?</th>
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let cliente of clieDes">
-            <td>{{cliente.nombre}}</td>
-            <td>{{cliente.cif}}</td>
-            <td>{{cliente.direccion}}</td>
-            <td>{{cliente.fecha}}</td>
+          <tr *ngFor="let place of places2">
+            <td>{{ place.nombre }}</td>
+            <td>{{ place.cif }}</td>
+            <td>{{ place.direccion }}</td>
+            <td>{{ place.fecha }}</td>
+            <td>{{ place.especial }}</td>
           </tr>
         </tbody>
       </table>
-    </div>  
+    </div>
     
+    <h2>Cines citados</h2>
+
+  <div>
+
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Cine</th>
+          <th>Boletos</th>
+          <th>Fecha Ocupada</th>
+        </tr>
+      </thead>
+      <tbody>
+
+        <tr *ngFor="let place of places">
+          <td>{{ place.direccion }}</td>
+          <td>{{ place.cif }}</td>
+          <td>{{ place.fecha }}</td>
+        </tr>
+        
+    </table>
   </div>
+</div>
   

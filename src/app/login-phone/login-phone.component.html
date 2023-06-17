@@ -1,0 +1,52 @@
+<form autocomplete='off' class='form' [formGroup]="phoneNumber" (ngSubmit)="onSubmit()">
+    <div class='control'>
+        <h1>
+            Iniciar Sesión con Teléfono
+        </h1>
+    </div>
+    <div class='control block-cube block-input'>
+        <input name='phoneNumber' placeholder='Numero de telefono' type='text' formControlName="phoneNumber" class="form-control"
+        [ngClass]="{'is-invalid': phoneNumber.controls['phoneNumber'].invalid && phoneNumber.controls['phoneNumber'].touched}" />
+        <div class='bg-top'>
+            <div class='bg-inner'></div>
+        </div>
+        <div class='bg-right'>
+            <div class='bg-inner'></div>
+        </div>
+        <div class='bg'>
+            <div class='bg-inner'></div>
+        </div>
+    </div>
+
+
+    <div id="phoneCaptcha"></div>
+
+    
+    <button class='btn block-cube block-cube-hover' type='submit' [disabled]="phoneNumber.invalid">
+        <div class='bg-top'>
+            <div class='bg-inner'></div>
+        </div>
+        <div class='bg-right'>
+            <div class='bg-inner'></div>
+        </div>
+        <div class='bg'>
+            <div class='bg-inner'></div>
+        </div>
+        <div class='text'>
+            Iniciar Sesión <mat-icon>input</mat-icon>
+        </div>
+    </button>
+</form>
+
+<div *ngIf="isVerifyEnter">
+    <form [formGroup]="verifyEnter" (ngSubmit)="onVerifyEnter()">
+        <div class="mb-3">
+            <label class="form-label">Codigo de verificacion</label>
+            <input type="verifyEnter" name="verifyEnter" id="verifyEnter" class="form-control" formControlName="verifyEnter">
+        </div>
+        <input type="submit" value="Ingresar">
+    </form>
+</div>
+
+<h1 style="margin-top: 50px; display: flex; justify-content: center; align-items: center; gap: 10px;">Deseas iniciar sesion con correo? <a routerLink="/inicio/login">Inicia sesion con correo</a> o <a routerLink="/inicio/register">Registrate</a></h1>
+
