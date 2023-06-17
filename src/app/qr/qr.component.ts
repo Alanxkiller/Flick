@@ -2,6 +2,7 @@ import { ArrayType } from '@angular/compiler';
 import { Component } from '@angular/core';
 import { SafeUrl } from '@angular/platform-browser';
 import { QRCodeComponent } from 'angularx-qrcode';
+import { EnvioUrlService } from '../envio-url.service';
 
 @Component({
   selector: 'app-qr',
@@ -13,29 +14,34 @@ export class QRComponent {
   title = 'QrPrueba';
   public myAngularxQrCode: string = '';
   levelArray: string[] = ['L', 'M', 'Q', 'H'];
-  linkArray: string[] = [
-    'https://www.youtube.com/watch?v=hVR5KK2T8zQ&list=RD08Grf4QSUys&index=2',
-    'https://www.youtube.com/watch?v=wxIU03Llxwg&list=RDGMEM2VCIgaiSqOfVzBAjPJm-ag&index=14',
-    'https://www.youtube.com/watch?v=Q0Dhod-hiIM&list=RDGMEM2VCIgaiSqOfVzBAjPJm-ag&index=13&pp=8AUB',
-    'https://www.youtube.com/watch?v=NPpELzyP4rw&list=RDGMEM2VCIgaiSqOfVzBAjPJm-ag&index=15&pp=8AUB'
-  ];
+  linkArray: any;
 
 
   public level: 'L' | 'M' | 'Q' | 'H';
   public link: string = "";
   public qrCodeDownloadLink: SafeUrl = '';
 
-  constructor() {
+  constructor(private envioUrlService: EnvioUrlService) {
     this.myAngularxQrCode =
-      'https://www.youtube.com/watch?v=hVR5KK2T8zQ&list=RD08Grf4QSUys&index=2';
+      'https://www.youtube.com/watch?v=eUP3hlBel5I';
     this.level = 'L';
     this.link =
-      'https://www.youtube.com/watch?v=NPpELzyP4rw&list=RDGMEM2VCIgaiSqOfVzBAjPJm-ag&index=15&pp=8AUB';
+      'https://www.youtube.com/watch?v=eUP3hlBel5I';
+  }
+
+  ngOnInit() {
+    this.envioUrlService.obtenerVideo().subscribe(data => (this.linkArray = data));
   }
 
   changeCode() {
+    
+    
+    this.envioUrlService.obtenerVideo().subscribe(data => (this.linkArray = data));
+
+    console.log(this.linkArray.trailer);
+  
     let newLevel = Math.floor(Math.random() * 4);    
-    this.link = this.linkArray[newLevel];
+    this.link = this.linkArray.trailer;
     
     if(newLevel == 0){
       this.updateLevel('L');
