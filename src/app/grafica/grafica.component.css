@@ -1,0 +1,72 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+  }
+  
+  .button-container {
+    margin-bottom: 20px;
+  }
+  
+  table {
+    border-collapse: collapse;
+    width: 300px;
+    margin-bottom: 20px;
+  }
+  
+  th {
+    background-color: #dadada;
+    padding: 10px;
+    text-align: center;
+  }
+  
+  td {
+    padding: 10px;
+    text-align: center;
+    border: 1px solid #ddd;
+  }
+  
+  canvas {
+    max-width: 600px;
+    margin-bottom: 20px;
+  }
+  .tabla-datos {
+    margin-top: 20px;
+    border-collapse: collapse;
+    width: 300px;
+  }
+  
+  .tabla-datos th, .tabla-datos td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+  }
+  
+  .tabla-datos th {
+    background-color: #f2f2f2;
+  }
+  
+  .tabla-datos tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  
+  .button-container {
+    text-align: center;
+  }
+  
+  .button-container button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+  }
+  
+  .button-container button:hover {
+    background-color: #45a049;
+  }
+  

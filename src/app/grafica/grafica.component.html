@@ -1,0 +1,20 @@
+<div class="container">
+  <div class="button-container">
+    <button (click)="generarGrafica()">Generar Gráfica</button>
+  </div>
+  <table>
+    <thead>
+      <tr>
+        <th>Cine</th> <!-- Columna con los nombres de los cines -->
+        <th>Boletos Vendidos</th> <!-- Columna con la cantidad de boletos vendidos -->
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let dato of tablaDatos; let i=index">
+        <td>Cine {{ nombresCines[i] }}</td> <!-- Columna de cine -->
+        <td>{{ dato }}</td> <!-- Columna de boletos vendidos -->
+      </tr>
+    </tbody>
+  </table>
+  <canvas #myChart></canvas>
+</div>

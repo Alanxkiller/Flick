@@ -7,6 +7,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatIcon, MatIconModule} from '@angular/material/icon';
+import { Chart } from 'chart.js';
 
 import { AppComponent } from './app.component';
 import { MainComponent } from './main/main.component';
@@ -16,6 +17,7 @@ import { CatalogoComponent } from './catalago/catalago.component';
 import { AboutComponent } from './about/about.component';
 import { BuscarComponent } from './buscar/buscar.component';
 import { CitasRegComponent } from './citas-reg/citas-reg.component';
+import { GraficaComponent } from './grafica/grafica.component';
 
 import { HttpClientModule, HttpClientJsonpModule } from '@angular/common/http';
 import { LoginComponent } from './login/login.component';
@@ -33,6 +35,7 @@ import { provideFirestore,getFirestore } from '@angular/fire/firestore';
   declarations: [
     AppComponent,
     MainComponent,
+    GraficaComponent,
     NavbarComponent,
     FooterComponent,
     CatalogoComponent,
@@ -64,7 +67,7 @@ import { provideFirestore,getFirestore } from '@angular/fire/firestore';
     MatBadgeModule,
     MatTooltipModule
   ],
-  providers: [],
+  providers: [{ provide: 'Chart', useValue: Chart }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
