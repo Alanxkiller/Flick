@@ -2,17 +2,32 @@ import { Component, OnInit } from '@angular/core';
 import { ClientesService, Cliente, Grupo } from '../clientes.service';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { Modal } from 'bootstrap';
+import { PlacesService } from '../places.service';
+import { CorreoService } from '../correo.service';
+import { Auth, getAuth, onAuthStateChanged } from '@angular/fire/auth';
+import * as Notiflix from 'notiflix';
 
+const OPCIONES_ESPECIAL = {
+  SI: 'Si',
+  NO: 'No'
+};
 
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
-  styleUrls: ['./main.component.css'],
+  styleUrls: ['./main.component.css']
 })
-export class MainComponent implements OnInit{
+
+export class MainComponent implements OnInit {
+
+  // Variables de correo
+  name!: string;
+  email: any;
+  message!: string;
+
   // Variables de Mensaje
   mensaje: string = "";
-  clieDes: any = localStorage.getItem("clieDes") || []; 
+  clieDes: any = localStorage.getItem("clieDes") || [];
 
   // Variables de servicio
   cliente!: Cliente;
@@ -21,13 +36,15 @@ export class MainComponent implements OnInit{
 
   // Formulario
   formulario: FormGroup;
-  nombreUsr:string = localStorage.getItem("usuarioActual") || "";
+  nombreUsr: string = localStorage.getItem("usuarioActual") || "";
+
 
   // Variables confirmación fecha
   libre: boolean = true;
   click: boolean = false;
   nuevaFecha: string = '';
-  listaDeFechas: any = localStorage.getItem("fechasOcupadas") || [];
+  listaDeFechass: any = localStorage.getItem("fechasOcupadas") || [];
+  listaDeFechas: any = JSON.parse(localStorage.getItem("fechasOcupadas") || '[]' ) || [];
 
   // Posters para la sección grid
   posters: any = [
@@ -70,7 +87,13 @@ export class MainComponent implements OnInit{
   ];
 
   // Constructor Servicio y validación formulario
-  constructor(private clientesService: ClientesService, private formBuilder: FormBuilder) {
+  constructor(
+    private clientesService: ClientesService,
+    private formBuilder: FormBuilder,
+    private placesService: PlacesService,
+    private correoService: CorreoService,
+    private auth: Auth
+  ) {
     this.formulario = this.formBuilder.group({
       nombre: [this.nombreUsr, [Validators.required, Validators.minLength(3)]],
       cif: ['', [Validators.required, Validators.pattern('^[a-zA-Z0-9]*$')]],
@@ -79,6 +102,22 @@ export class MainComponent implements OnInit{
   }
 
   ngOnInit() {
+    const auth = getAuth();
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        // User is signed in, see docs for a list of available properties
+        // https://firebase.google.com/docs/reference/js/firebase.User
+        const userEmail = user.email?.toString;
+        const userUID = user.uid;
+        localStorage.setItem("userUID", userUID);
+        console.log('Email: ', userEmail);
+        console.log('User: ', user);
+        this.email = userEmail;
+      } else {
+        // User is signed out
+        // ...
+      }
+    });
     this.registro = false;
     this.cliente = this.clientesService.nuevoCliente();
     this.grupos = this.clientesService.getGrupos();
@@ -116,33 +155,66 @@ export class MainComponent implements OnInit{
     }
     this.nuevaFecha = fecha;
     console.log(this.nuevaFecha);
-    
+
     return this.libre;
   }
 
-  nuevoCliente(): void {
+  async nuevoCliente(): Promise<void> {
 
+    console.log(this.formulario.value)
     console.log(this.nuevaFecha);
-    
-    if(this.nuevaFecha === "" || this.libre == false || this.click == false){
+
+    if (this.nuevaFecha === "" || this.libre == false || this.click == false) {
       this.dateModal();
 
-    }else{
-      
-      if(this.listaDeFechas.length > 0){
-        this.listaDeFechas = JSON.parse(this.listaDeFechas);
-      }
-      
+    } else {
+
       let fechaRegistrada = {
         fecha: this.nuevaFecha
       }
       console.log(fechaRegistrada);
-      
-  
+
+
       this.listaDeFechas.push(fechaRegistrada);
-      localStorage.setItem("fechasOcupadas",JSON.stringify(this.listaDeFechas));
-  
+      localStorage.setItem("fechasOcupadas", JSON.stringify(this.listaDeFechas));
+
       if (this.formulario?.valid) {
+        if (this.formulario.value.cif > 4) {
+
+          if (this.clieDes.length > 0) {
+            this.clieDes = JSON.parse(this.clieDes);
+          }
+
+          const clienteEspecial = {
+            nombre: this.formulario.value.nombre,
+            cif: this.formulario.value.cif,
+            direccion: this.formulario.value.direccion,
+            fecha: this.nuevaFecha
+          }
+
+          this.clieDes.push(clienteEspecial);
+
+          const fechaForm = {
+             ...this.formulario.value, 
+             fecha: this.nuevaFecha, 
+             especial: OPCIONES_ESPECIAL.SI,
+             userUID: localStorage.getItem("userUID")
+            };
+
+          const response = await this.placesService.addPlace(fechaForm);
+
+          localStorage.setItem("clieDes", JSON.stringify(this.clieDes));
+          this.mensaje = `Felicidades. Por su compra de ${this.formulario.value.cif} boletos. Usted tendrá un descuento especial (Puede consulitarlo en la tabla de fechas registradas)`;
+        } else {
+          const fechaForm = { 
+            ...this.formulario.value, 
+            fecha: this.nuevaFecha, 
+            especial: OPCIONES_ESPECIAL.NO,
+            userUID: localStorage.getItem("userUID") 
+          };
+          
+          const response = await this.placesService.addPlace(fechaForm);
+        }
         const cliente: Cliente = {
           id: this.clientesService.getClientes()?.length,
           nombre: this.formulario.value.nombre,
@@ -152,40 +224,44 @@ export class MainComponent implements OnInit{
         };
         this.clientesService.agregarCliente(cliente);
         this.registro = true;
-        if(this.formulario.value.cif > 4){
 
-          if(this.clieDes.length > 0){
-            this.clieDes = JSON.parse(this.clieDes);
-          }
-
-          const clienteEspecial = {
-            nombre:this.formulario.value.nombre,
-            cif: this.formulario.value.cif,
-            direccion: this.formulario.value.direccion,
-            fecha: this.nuevaFecha
-          }
-
-          this.clieDes.push(clienteEspecial);
-          localStorage.setItem("clieDes", JSON.stringify(this.clieDes));
-          this.mensaje = `Felicidades. Por su compra de ${this.formulario.value.cif} boletos. Usted tendrá un descuento especial (Puede consulitarlo en la tabla de fechas registradas)`;
-        }
+        this.name = "cita";
+        this.message = "Su cita ha sido agendada exitosamente! Lo esperamos el " + this.nuevaFecha + " en " + this.formulario.value.direccion + "!";
+        this.enviarCorreo();
         this.openFinalModal();
-  
+
       }
     }
 
   }
 
-  dateModal():void{
+  enviarCorreo(){      
+    Notiflix.Loading.standard('Espera poquito...') 
+    this.correoService.sendEmail(this.name, this.email, this.message).subscribe(
+      response => {
+        Notiflix.Loading.remove();
+        Notiflix.Notify.success('El correo fue enviado correctamente');
+        console.log('Email sent successfully!');
+      },
+      error => {
+        Notiflix.Loading.remove();
+        Notiflix.Notify.info('Hubo un error al enviar el correo :c');
+        console.log('Error sending email:', error);
+      }
+    );
+
+  }
+
+  dateModal(): void {
     const fechaModalElemento = document.getElementById("fechaModal") as HTMLElement;
     const fechaModal = new Modal(fechaModalElemento);
     fechaModal.show()
   }
 
-  openFinalModal():void{
+  openFinalModal(): void {
     const finalModalElemento = document.getElementById("modalFinal") as HTMLElement;
     const finalModal = new Modal(finalModalElemento);
     finalModal.show()
   }
-  
+
 }

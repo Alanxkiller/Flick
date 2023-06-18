@@ -1,0 +1,9 @@
+<div class="constructor">
+  <qrcode (qrCodeURL)="onChangeURL($event)" [qrdata]="link" [width]="256" [errorCorrectionLevel]="level"
+    [colorDark]="'#04203fff'" [colorLight]="'#d0021bff'" [margin]="4"></qrcode>
+  <!-- <a [href]="qrCodeDownloadLink" download="qrcode">Download</a> -->
+
+  <br />
+
+  <button class="btn btn-danger" (click)="changeCode()">Cambiar QR</button>
+</div>

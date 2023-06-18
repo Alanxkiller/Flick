@@ -1,39 +1,90 @@
 /* Navbar */
-.navbar{
-    background-color: #04203f;
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    box-sizing: border-box !important;
+.navbar {
+  background-color: #04203f;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-sizing: border-box !important;
 }
 
 .nav-link,
-.navbar-brand{
-    padding: 10px 20px;
-    color: #fff;
+.navbar-brand {
+  padding: 10px 20px;
+  color: #fff;
 }
 
-.login{
-    background-color: #d0021b;
-    border-radius: 15px;
+.nav-item {
+  color: #fff;
+  font-size: 0.8rem;
 }
 
-.navbar-brand{
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 30px;
+.nav-item p {
+  margin-bottom: 0;
 }
 
-.nav-link:hover{
-    color: #bbb;
+.login {
+  background-color: #d0021b;
+  border-radius: 15px;
 }
 
-.material-symbols-outlined{
-    color: #d0021b;
-    font-size: 30px;
+.navbar-brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 30px;
 }
 
-.logo{
-    width: 50px;
+.nav-link:hover {
+  color: #bbb;
+}
+
+.material-symbols-outlined {
+  font-size: 1.2rem;
+}
+
+.logo {
+  width: 50px;
+}
+
+/* .navbar-nav > li {
+  margin-left: 10px;  use margin or padding values to make it move right/left accordingly 
+  padding-left:50px;
+}*/
+
+.navbar-nav {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.offcanvas-body {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+#menu,
+.title-options,
+.acc-options {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}
+
+.contrastDark {
+  border: 1px solid #eee;
+}
+
+.contrast {
+  outline: 1px solid #111;
+}
+
+#menu {
+  display: inline-flex;
 }

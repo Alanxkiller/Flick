@@ -1,13 +1,14 @@
 <p style="text-align: center; margin: 15px;">{{menuopc}}</p>
-<form autocomplete='off' class='form' [formGroup]="formulario">
+
+<form autocomplete='off' class='form' [formGroup]="formulario" (ngSubmit)="onSubmit()">
     <div class='control'>
         <h1>
             Iniciar Sesión
         </h1>
     </div>
     <div class='control block-cube block-input'>
-        <input name='username' placeholder='Nombre de Usuario' type='text' formControlName="nombre"
-        [ngClass]="{'is-invalid': formulario.controls['nombre'].invalid && formulario.controls['nombre'].touched}" />
+        <input name='email' placeholder='Correo electronico' type='text' formControlName="email" class="form-control"
+        [ngClass]="{'is-invalid': formulario.controls['email'].invalid && formulario.controls['email'].touched}" />
         <div class='bg-top'>
             <div class='bg-inner'></div>
         </div>
@@ -19,8 +20,8 @@
         </div>
     </div>
     <div class='control block-cube block-input'>
-        <input name='password' placeholder='Contraseña' type='password' formControlName="contra"
-        [ngClass]="{'is-invalid': formulario.controls['nombre'].invalid && formulario.controls['nombre'].touched}">
+        <input name='password' placeholder='Contraseña' type='password' formControlName="password" class="form-control"
+        [ngClass]="{'is-invalid': formulario.controls['password'].invalid && formulario.controls['password'].touched}">
         <div class='bg-top'>
             <div class='bg-inner'></div>
         </div>
@@ -31,7 +32,7 @@
             <div class='bg-inner'></div>
         </div>
     </div>
-    <button class='btn block-cube block-cube-hover' type='button' [disabled]="formulario.invalid" (click)="iniciarSesion()">
+    <button class='btn block-cube block-cube-hover' type='submit' [disabled]="formulario.invalid">
         <div class='bg-top'>
             <div class='bg-inner'></div>
         </div>
@@ -46,6 +47,10 @@
         </div>
     </button>
 </form>
+
+<h1 style="margin-top: 50px; display: flex; justify-content: center; align-items: center; gap: 10px;">Deseas iniciar sesion con telefono? <a routerLink="/inicio/login-phone">Inicia sesion con telefono</a> o <a routerLink="/inicio/register">Registrate</a></h1>
+
+
 <div *ngIf="iniciada">
     <div class="alert alert-info m-1" role="alert">Bienvenido {{this.formulario.value.nombre}}</div>
 </div>

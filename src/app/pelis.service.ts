@@ -6,7 +6,7 @@ import { HttpClient,HttpHeaders,HttpParams } from '@angular/common/http';
 })
 export class PelisService {
 
-  private url:string='http://api.themoviedb.org/3/discover/movie';
+  private url:string='https://api.themoviedb.org/3/discover/movie';
   private params=new HttpParams()
   .set('api_key','b07ac2dd1a2307809ead86871d129fd8')
   .set('page',5)
@@ -24,7 +24,7 @@ export class PelisService {
 constructor(private http:HttpClient) { }
 
 async getAll():Promise<any>{
-  console.log('firus');
+  console.log("Conexión de API exitosa");
   return new Promise(resolve=>{
     this.http.get(this.url, this.httpOptions).subscribe(data=>{
       resolve(data);

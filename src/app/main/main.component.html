@@ -53,6 +53,7 @@
                 <h4>{{poster.titulo}}</h4>
                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target=".payModal"
                     [attr.data-bs-target]="'#mov-'+i">{{poster.pagar}}</button>
+
                 <!-- Modal de Pago -->
                 <div class="modal fade" [attr.id]="'mov-'+i" tabindex="-1" aria-labelledby="exampleModalLabel"
                     aria-hidden="true">
@@ -72,7 +73,8 @@
                                     <div class="pay-section">
                                         <h5>Seleccione la Fecha y hora</h5>
                                         <input type="datetime-local" #fecha [(ngModel)]="checkDate"
-                                            [ngModelOptions]="{standalone: true}" class="form-control">
+                                            [ngModelOptions]="{standalone: true}" class="form-control"
+                                            min="2023-06-17T00:00">
                                         <mat-slide-toggle color="primary">Recibir notificación de
                                             fecha</mat-slide-toggle>
                                         <button type="btn" class="btn btn-dark" id="submit"
@@ -114,7 +116,8 @@
                                                 [ngClass]="{'is-invalid': formulario.controls['cif'].invalid && formulario.controls['cif'].touched}" />
                                             <div
                                                 *ngIf="formulario.controls['cif'].touched && formulario.controls['cif'].invalid">
-                                                <div *ngIf="formulario.controls['cif'].errors?.['required']">Es requerido el número de boletos.</div>
+                                                <div *ngIf="formulario.controls['cif'].errors?.['required']">Es
+                                                    requerido el número de boletos.</div>
                                                 <div *ngIf="formulario.controls['cif'].errors?.['pattern']">El ID solo
                                                     puede contener caracteres alfanuméricos.</div>
                                             </div>
@@ -142,7 +145,7 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary"
-                                    data-bs-dismiss="modal" >Cancelar</button>
+                                    data-bs-dismiss="modal">Cancelar</button>
                             </div>
                         </div>
                     </div>
@@ -150,35 +153,35 @@
             </div>
         </ng-container>
     </section>
-    
+
     <!-- Modal de completado -->
     <div class="modal" tabindex="-1" id="modalFinal">
         <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-body">
-              <p>Disfrute su película</p>
-              <p>{{mensaje}}</p>
+            <div class="modal-content">
+                <div class="modal-body">
+                    <p>Disfrute su película</p>
+                    <p>{{mensaje}}</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                </div>
             </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-            </div>
-          </div>
         </div>
-      </div>
+    </div>
 
     <!-- Modal de Fecha -->
     <div class="modal" tabindex="-1" id="fechaModal">
         <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-body">
-              <p>Haz seleccionado una fecha ocupada o no seleccionaste la fecha</p>
+            <div class="modal-content">
+                <div class="modal-body">
+                    <p>Haz seleccionado una fecha ocupada o no seleccionaste la fecha</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                </div>
             </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-            </div>
-          </div>
         </div>
-      </div>  
+    </div>
     <!-- Main Article -->
     <main class="main-art">
         <h2>¿Qué es Flick?</h2>

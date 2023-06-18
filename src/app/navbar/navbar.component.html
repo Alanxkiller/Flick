@@ -8,9 +8,10 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
+            <ul class="navbar-nav ml-5">
                 <li class="nav-item">
-                    <a class="nav-link" aria-current="page" [routerLink]="['/inicio']" routerLinkActive="active">Inicio</a>
+                    <a class="nav-link" aria-current="page" [routerLink]="['/inicio']"
+                        routerLinkActive="active">Inicio</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" [routerLink]="['/inicio', 'catalogo']" routerLinkActive="active">Catálogo</a>
@@ -21,13 +22,98 @@
                 <li class="nav-item">
                     <a class="nav-link" [routerLink]="['/inicio', 'buscar']" routerLinkActive="active">Buscar</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" [routerLink]="['/inicio', 'citas-registradas']" routerLinkActive="active">Citas registradas</a>
+                <li class="nav-item" *ngIf="isLogged==true">
+                    <a class="nav-link" [routerLink]="['/inicio', 'mis-citas']" routerLinkActive="active">Mis citas</a>
                 </li>
-                <li class="nav-item login">
+                <li class="nav-item" *ngIf="admin==true">
+                    <a class="nav-link" [routerLink]="['/inicio', 'citas-registradas']" routerLinkActive="active">Citas
+                        registradas</a>
+                </li>
+                <li class="nav-item login" *ngIf="isLogged==false">
                     <a class="nav-link" [routerLink]="['/inicio', opcion]" routerLinkActive="active">Iniciar Sesión</a>
+                </li>
+                <li class="nav-item login" *ngIf="isLogged==false">
+                    <a class="nav-link" [routerLink]="['/inicio', 'register']" routerLinkActive="active">Registrarse</a>
+                </li>
+                <li class="nav-item" *ngIf="isLogged==true">
+                    <button (click)="onClick()" class="btn btn-outline-danger ml-4">Salir</button>
+                </li>
+                <li>
+                    <a class="btn btn-light" id="menu" data-bs-toggle="offcanvas" href="#opcionesAccesibilidad"
+                        role="button" aria-controls="opcionesAccesibilidad">
+                        Opciones de Accesibilidad <span class="material-symbols-outlined">
+                            accessibility_new
+                        </span>
+                    </a>
+                </li>
+                <li class="nav-item" *ngIf="isLogged==true">
+                    <p>¡Bienvenido {{email}}</p>
                 </li>
             </ul>
         </div>
+
+
     </div>
 </nav>
+
+<div class="offcanvas offcanvas-start" data-bs-backdrop="static" tabindex="-1" id="opcionesAccesibilidad"
+    aria-labelledby="staticBackdropLabel">
+    <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="staticBackdropLabel">Opciones de Accesibilidad</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+        <div class="offcanvas-div">
+            <h5 class="title-options">Lectura en Voz Alta <span class="material-symbols-outlined">
+                    hearing
+                </span></h5>
+            <div class="buttons">
+                <button class="btn btn-primary acc-options" (click)="playSpeechMode()">Reproducir <span
+                        class="material-symbols-outlined">
+                        play_arrow
+                    </span></button>
+                <button class="btn btn-primary acc-options" (click)="stopSpeechMode()">Detener <span
+                        class="material-symbols-outlined">
+                        stop_circle
+                    </span></button>
+                <button class="btn btn-primary acc-options" (click)="pauseSpeechMode()">Pausar <span
+                        class="material-symbols-outlined">
+                        pause
+                    </span></button>
+            </div>
+        </div>
+        <div class="offcanvas-div">
+            <h5 class="title-options">Modo Oscuro <span class="material-symbols-outlined">
+                    settings_night_sight
+                </span></h5>
+            <button class="btn btn-primary acc-options" id="darkModeBtn" #darkModeBtn (click)="darkMode()">Modo Oscuro
+                <span class="material-symbols-outlined">
+                    dark_mode
+                </span></button>
+        </div>
+        <div class="offcanvas-div">
+            <h5 class="title-options">Cambiar Tamaño de Fuente <span class="material-symbols-outlined">
+                    format_size
+                </span></h5>
+            <div class="buttons">
+                <button class="btn btn-primary acc-options" (click)="upFontSize()">Aumentar Fuente<span
+                        class="material-symbols-outlined">
+                        text_increase
+                    </span></button>
+                <button class="btn btn-primary acc-options" (click)="downFontSize()">Disminuir Fuente<span
+                        class="material-symbols-outlined">
+                        text_decrease
+                    </span></button>
+            </div>
+        </div>
+        <div class="offcanvas-div">
+            <h5 class="title-options">Filtro Luz Azul <span class="material-symbols-outlined">
+                    preview
+                </span></h5>
+            <button class="btn btn-primary acc-options" #blueFilt (click)="blueFilter()">Activar Filtro <span
+                    class="material-symbols-outlined">
+                    toggle_off
+                </span></button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,55 @@
+<p style="text-align: center; margin: 15px;">{{menuopc}}</p>
+
+<form autocomplete='off' class='form' [formGroup]="formulario" (ngSubmit)="onSubmit()">
+    <div class='control'>
+        <h1>
+            Registrarse
+        </h1>
+    </div>
+    <div class='control block-cube block-input'>
+        <input name='email' placeholder='Nombre de Usuario' type='text' formControlName="email" class="form-control"
+        [ngClass]="{'is-invalid': formulario.controls['email'].invalid && formulario.controls['email'].touched}" />
+        <div class='bg-top'>
+            <div class='bg-inner'></div>
+        </div>
+        <div class='bg-right'>
+            <div class='bg-inner'></div>
+        </div>
+        <div class='bg'>
+            <div class='bg-inner'></div>
+        </div>
+    </div>
+    <div class='control block-cube block-input'>
+        <input name='password' placeholder='Contraseña' type='password' formControlName="password" class="form-control"
+        [ngClass]="{'is-invalid': formulario.controls['password'].invalid && formulario.controls['password'].touched}">
+        <div class='bg-top'>
+            <div class='bg-inner'></div>
+        </div>
+        <div class='bg-right'>
+            <div class='bg-inner'></div>
+        </div>
+        <div class='bg'>
+            <div class='bg-inner'></div>
+        </div>
+    </div>
+    <button class='btn block-cube block-cube-hover' type='submit' [disabled]="formulario.invalid">
+        <div class='bg-top'>
+            <div class='bg-inner'></div>
+        </div>
+        <div class='bg-right'>
+            <div class='bg-inner'></div>
+        </div>
+        <div class='bg'>
+            <div class='bg-inner'></div>
+        </div>
+        <div class='text'>
+            Registrarse <mat-icon>input</mat-icon>
+        </div>
+    </button>
+</form>
+
+<h1 style="margin-top: 50px; display: flex; justify-content: center; align-items: center; gap: 10px;">Ya te registraste? <a routerLink="/inicio/login">Inicia sesion</a></h1>
+
+<div *ngIf="iniciada">
+    <div class="alert alert-info m-1" role="alert">Bienvenido {{this.formulario.value.nombre}}</div>
+</div>
