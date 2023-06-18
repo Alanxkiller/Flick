@@ -56,7 +56,6 @@ export class NavbarComponent {
         this.isLogged = true;
         if (userEmail == 'semamaanal5@gmail.com')
         {
-        if (userEmail == 'alanaxel121@gmail.com') {
           this.admin = true;
         } else {
           this.admin = false;

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
+import * as Notiflix from 'notiflix';
 
 @Component({
   selector: 'app-buscar',
@@ -49,10 +50,13 @@ export class BuscarComponent {
   }
 
   buscar() {
+    Notiflix.Loading.standard('Espera poquito...')
     this.resultados = this.peliculas.filter(pelicula =>
       pelicula.nombre.toLowerCase().includes(this.query.toLowerCase())
     );
     this.busquedaRealizada = true;
+    Notiflix.Loading.remove();
+    Notiflix.Notify.info('Búsqueda realizada: ' + this.FuncionBuscaG);
   }
 
   // Se declara e inicia en el componente padre para luego comunicarlo al componente hijo

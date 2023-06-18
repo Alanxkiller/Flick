@@ -11,3 +11,10 @@
 .card-title {
   color: #000 !important;
 }
+
+.about{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
