@@ -5,7 +5,7 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class CorreoService {
-  private emailUrl = 'http://localhost:3000/envio'; // Replace with your backend URL
+  private emailUrl = 'https://flickbackend.onrender.com/envio'; // Replace with your backend URL
 
   constructor(private http: HttpClient) { }
 

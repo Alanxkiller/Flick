@@ -7,7 +7,7 @@ import { Urls } from './urls.interface'
   providedIn: 'root'
 })
 export class EnvioUrlService {
-  private obtenerVideoUrl = 'http://localhost:3000/obtenerVideo'; // Replace with your backend URL
+  private obtenerVideoUrl = 'https://flickbackend.onrender.com/obtenerVideo'; // Replace with your backend URL
   constructor(private http: HttpClient) { }
 
   obtenerVideo(): Observable<Urls> {
