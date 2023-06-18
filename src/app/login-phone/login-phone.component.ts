@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { UserService } from '../user.service';
 import * as Auths from 'firebase/auth';
+import * as Notiflix from 'notiflix';
 
 @Component({
   selector: 'app-login-phone',
@@ -64,9 +65,11 @@ export class LoginPhoneComponent implements OnInit {
           if (code) {
             confirmationResult.confirm(code).then( () => {
               window.close();
+              Notiflix.Notify.success('Haz iniciado sesion, ¡bienvenido!');
               this.router.navigate(['/inicio']);
             }).catch(function (error) {
               // User couldn't sign in (bad verification code?)
+              Notiflix.Notify.failure('Hubo un error con el codigo de verificacion');
               console.error('Error while checking the verification code', error);
               window.alert('Error while checking the verification code:\n\n'
                   + error.code + '\n\n' + error.message)

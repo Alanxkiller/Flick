@@ -10,7 +10,8 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ml-5">
                 <li class="nav-item">
-                    <a class="nav-link" aria-current="page" [routerLink]="['/inicio']" routerLinkActive="active">Inicio</a>
+                    <a class="nav-link" aria-current="page" [routerLink]="['/inicio']"
+                        routerLinkActive="active">Inicio</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" [routerLink]="['/inicio', 'catalogo']" routerLinkActive="active">Catálogo</a>
@@ -21,11 +22,12 @@
                 <li class="nav-item">
                     <a class="nav-link" [routerLink]="['/inicio', 'buscar']" routerLinkActive="active">Buscar</a>
                 </li>
-                <li class="nav-item"  *ngIf="isLogged==true">
+                <li class="nav-item" *ngIf="isLogged==true">
                     <a class="nav-link" [routerLink]="['/inicio', 'mis-citas']" routerLinkActive="active">Mis citas</a>
                 </li>
                 <li class="nav-item" *ngIf="admin==true">
-                    <a class="nav-link" [routerLink]="['/inicio', 'citas-registradas']" routerLinkActive="active">Citas registradas</a>
+                    <a class="nav-link" [routerLink]="['/inicio', 'citas-registradas']" routerLinkActive="active">Citas
+                        registradas</a>
                 </li>
                 <li class="nav-item login" *ngIf="isLogged==false">
                     <a class="nav-link" [routerLink]="['/inicio', opcion]" routerLinkActive="active">Iniciar Sesión</a>
@@ -34,9 +36,13 @@
                     <a class="nav-link" [routerLink]="['/inicio', 'register']" routerLinkActive="active">Registrarse</a>
                 </li>
                 <li class="nav-item" *ngIf="isLogged==true">
-                <button (click)="onClick()" class="btn btn-outline-danger ml-4">Salir</button>
+                    <button (click)="onClick()" class="btn btn-outline-danger ml-4">Salir</button>
                 </li>
             </ul>
         </div>
+
+        <li class="nav-item" *ngIf="isLogged==true">
+            <p>¡Bienvenido {{email}}</p>
+        </li>
     </div>
 </nav>

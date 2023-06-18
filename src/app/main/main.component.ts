@@ -3,6 +3,9 @@ import { ClientesService, Cliente, Grupo } from '../clientes.service';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { Modal } from 'bootstrap';
 import { PlacesService } from '../places.service';
+import { CorreoService } from '../correo.service';
+import { Auth, getAuth, onAuthStateChanged } from '@angular/fire/auth';
+import * as Notiflix from 'notiflix';
 
 const OPCIONES_ESPECIAL = {
   SI: 'Si',
@@ -16,6 +19,11 @@ const OPCIONES_ESPECIAL = {
 })
 
 export class MainComponent implements OnInit {
+
+  // Variables de correo
+  name!: string;
+  email: any;
+  message!: string;
 
   // Variables de Mensaje
   mensaje: string = "";
@@ -82,7 +90,9 @@ export class MainComponent implements OnInit {
   constructor(
     private clientesService: ClientesService,
     private formBuilder: FormBuilder,
-    private placesService: PlacesService
+    private placesService: PlacesService,
+    private correoService: CorreoService,
+    private auth: Auth
   ) {
     this.formulario = this.formBuilder.group({
       nombre: [this.nombreUsr, [Validators.required, Validators.minLength(3)]],
@@ -92,6 +102,22 @@ export class MainComponent implements OnInit {
   }
 
   ngOnInit() {
+    const auth = getAuth();
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        // User is signed in, see docs for a list of available properties
+        // https://firebase.google.com/docs/reference/js/firebase.User
+        const userEmail = user.email?.toString;
+        const userUID = user.uid;
+        localStorage.setItem("userUID", userUID);
+        console.log('Email: ', userEmail);
+        console.log('User: ', user);
+        this.email = userEmail;
+      } else {
+        // User is signed out
+        // ...
+      }
+    });
     this.registro = false;
     this.cliente = this.clientesService.nuevoCliente();
     this.grupos = this.clientesService.getGrupos();
@@ -176,7 +202,6 @@ export class MainComponent implements OnInit {
             };
 
           const response = await this.placesService.addPlace(fechaForm);
-          const response2 = await this.placesService.addPlace2(fechaForm);
 
           localStorage.setItem("clieDes", JSON.stringify(this.clieDes));
           this.mensaje = `Felicidades. Por su compra de ${this.formulario.value.cif} boletos. Usted tendrá un descuento especial (Puede consulitarlo en la tabla de fechas registradas)`;
@@ -200,10 +225,30 @@ export class MainComponent implements OnInit {
         this.clientesService.agregarCliente(cliente);
         this.registro = true;
 
+        this.name = "cita";
+        this.message = "Su cita ha sido agendada exitosamente! Lo esperamos el " + this.nuevaFecha + " en " + this.formulario.value.direccion + "!";
+        this.enviarCorreo();
         this.openFinalModal();
 
       }
     }
+
+  }
+
+  enviarCorreo(){      
+    Notiflix.Loading.standard('Espera poquito...') 
+    this.correoService.sendEmail(this.name, this.email, this.message).subscribe(
+      response => {
+        Notiflix.Loading.remove();
+        Notiflix.Notify.success('El correo fue enviado correctamente');
+        console.log('Email sent successfully!');
+      },
+      error => {
+        Notiflix.Loading.remove();
+        Notiflix.Notify.info('Hubo un error al enviar el correo :c');
+        console.log('Error sending email:', error);
+      }
+    );
 
   }
 

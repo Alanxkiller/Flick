@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ActivatedRoute, ParamMap } from '@angular/router';
+import * as Notiflix from 'notiflix';
 import { UserService } from 'src/app/user.service';
 
 
@@ -64,13 +65,20 @@ export class LoginComponent {
   }
 
   onSubmit() {
+    Notiflix.Loading.standard('Espera poquito...')
     console.log(this.formulario.value);
     this.userService.login(this.formulario.value)
       .then(response => {
         console.log(response);
+        Notiflix.Loading.remove();
+        Notiflix.Notify.success('Haz iniciado sesion, ¡bienvenido!');
         this.router.navigate(['/inicio']);
       })
-      .catch(error => console.log(error));
+      .catch(error => {
+        console.log(error);
+        Notiflix.Loading.remove();
+        Notiflix.Notify.warning('Haz ingresado mal tu usuario o tu contraseña');
+      })
   }
 
   onClick() {

@@ -42,3 +42,7 @@
     margin-left:10px; /* use margin or padding values to make it move right/left accordingly */
     /*padding-left:50px;*/
 }
+
+p{
+    color:aliceblue;
+}

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { UserService } from '../user.service';
 import { Auth, getAuth, onAuthStateChanged } from '@angular/fire/auth';
+import * as Notiflix from 'notiflix';
 
 
 @Component({
@@ -10,7 +11,7 @@ import { Auth, getAuth, onAuthStateChanged } from '@angular/fire/auth';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent {
-
+  email: any;
   admin: any;
   isLogged: any;
   authU = getAuth();
@@ -32,6 +33,7 @@ export class NavbarComponent {
         // https://firebase.google.com/docs/reference/js/firebase.User
         const userEmail = user.email;
         const userUID = user.uid;
+        this.email = userEmail+"!";
         localStorage.setItem("userUID", userUID);
         console.log('Email: ', userEmail);
         console.log('User: ', user);
@@ -66,6 +68,7 @@ export class NavbarComponent {
   }
 
   onClick() {
+    Notiflix.Notify.info('¡Nos vemos! No se te olvide tomar agua :)');
     this.userService.logout()
       .then(() => {
         this.router.navigate(['/inicio/register']);

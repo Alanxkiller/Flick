@@ -3,6 +3,7 @@ import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms'
 import { Router } from '@angular/router';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { UserService } from '../user.service';
+import * as Notiflix from 'notiflix';
 
 @Component({
   selector: 'app-register',
@@ -54,13 +55,20 @@ export class RegisterComponent {
   }
 
    onSubmit() {
+    Notiflix.Loading.standard('Espera poquito...')
     this.userService.register(this.formulario.value)
       .then(response => {
+        Notiflix.Loading.remove();
+        Notiflix.Notify.success('Te haz registrado exitosamente, ¡bienvenido!');
         console.log(response);
         this.iniciada = true;
         this.router.navigate(['/inicio']);
       })
-      .catch(error => console.log(error));
+      .catch(error => {
+        console.log(error);
+        Notiflix.Loading.remove();
+        Notiflix.Notify.failure('Hubo un problema con el registro');
+      });
   }
 
 }

@@ -1,53 +1,53 @@
 <div class="contenedor">
-    <h2>Citas registradas</h2>
-    <div>
-      <table class="table table-striped">
-        <thead>
-          <tr>
-            <th>Nombre</th>
-            <th>Boletos</th>
-            <th>Cine</th>
-            <th>Fecha Ocupada</th>
-            <th>Especial?</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let place of places">
-            <td>{{ place.nombre }}</td>
-            <td>{{ place.cif }}</td>
-            <td>{{ place.direccion }}</td>
-            <td>{{ place.fecha }}</td>
-            <td>{{ place.especial }}</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    <h2>Citas con Descuento</h2>
-    <!--<div *ngIf="!clieDes?.length">No hay clientes con descuento</div>-->
-    <div>
-      <table class="table table-striped">
-        <thead>
-          <tr>
-            <th>Nombre</th>
-            <th>Boletos</th>
-            <th>Cine</th>
-            <th>Fecha Ocupada</th>
-            <th>Especial?</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let place of places2">
-            <td>{{ place.nombre }}</td>
-            <td>{{ place.cif }}</td>
-            <td>{{ place.direccion }}</td>
-            <td>{{ place.fecha }}</td>
-            <td>{{ place.especial }}</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    
-    <h2>Cines citados</h2>
+  <h2>Citas registradas</h2>
+  <div>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Boletos</th>
+          <th>Cine</th>
+          <th>Fecha Ocupada</th>
+          <th>Especial?</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let place of places">
+          <td>{{ place.nombre }}</td>
+          <td>{{ place.cif }}</td>
+          <td>{{ place.direccion }}</td>
+          <td>{{ place.fecha }}</td>
+          <td>{{ place.especial }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <h2>Citas con Descuento</h2>
+  <!--<div *ngIf="!clieDes?.length">No hay clientes con descuento</div>-->
+  <div>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Boletos</th>
+          <th>Cine</th>
+          <th>Fecha Ocupada</th>
+          <th>Especial?</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let place of places2">
+          <td>{{ place.nombre }}</td>
+          <td>{{ place.cif }}</td>
+          <td>{{ place.direccion }}</td>
+          <td>{{ place.fecha }}</td>
+          <td>{{ place.especial }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>Cines citados</h2>
 
   <div>
 
@@ -66,10 +66,9 @@
           <td>{{ place.cif }}</td>
           <td>{{ place.fecha }}</td>
         </tr>
-        
     </table>
   </div>
+  <h2>Cantidad de citas por Cine</h2>
 </div>
-  
-<app-bar-chart></app-bar-chart>
 
+<app-bar-chart></app-bar-chart>
