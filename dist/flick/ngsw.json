@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1687074098948,
+  "timestamp": 1687076611704,
   "index": "/index.html",
   "assetGroups": [
     {
@@ -13,7 +13,7 @@
       "urls": [
         "/favicon.ico",
         "/index.html",
-        "/main.a2e1dec4f2f849d2.js",
+        "/main.e1a685510f9d6a10.js",
         "/manifest.webmanifest",
         "/polyfills.847b683245d98b59.js",
         "/runtime.b8f2aa8b9ffecbc9.js",
@@ -126,9 +126,9 @@
     "/assets/img/xmen.jpg": "83e560e6297609940b6f10978d45a346fbebe2cc",
     "/assets/img/yourName.jpg": "0bbdbee4f46c1a21e3c7a6eaea3e10a4dde8dd5d",
     "/favicon.ico": "a950a86076c28030daf14c75900d51b085c31d92",
-    "/index.html": "f96f7f0e7210f6baa69f0e7699408480cb464289",
-    "/main.a2e1dec4f2f849d2.js": "3417ce24db01b4c44828592fe559c9c7bc07e3a6",
-    "/manifest.webmanifest": "b13a74f8a787a40f7728a50da438d3893c892bfd",
+    "/index.html": "34a283f2af2f0a2cfc2f66a2584766f27b7ebffc",
+    "/main.e1a685510f9d6a10.js": "cfb719927d92c3e398257324133382e279947b6a",
+    "/manifest.webmanifest": "3fb81404e215015ecc62471ceef364c62133424f",
     "/polyfills.847b683245d98b59.js": "7ca244933a9f08d1db7d7c3927a20a8bd46eee1a",
     "/runtime.b8f2aa8b9ffecbc9.js": "79b5d607a508912642da0730b5229b07e970c3d6",
     "/styles.e8bec583851561e4.css": "9a579b6e08e32564cde7a0ad5b6438e37e76827d"
