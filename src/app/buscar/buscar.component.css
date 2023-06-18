@@ -1,18 +1,23 @@
 .search-bar {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .text-center {
-    text-align: center;
-  }
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
-  .imagen-pelicula {
-    max-width: 100%;
-    height: auto;
-  }
+.text-center {
+  text-align: center;
+}
 
-  .card {
-    margin-bottom: 20px;
-  }
+.imagen-pelicula {
+  max-width: 100%;
+  height: auto;
+}
+
+.card {
+  margin-bottom: 20px;
+}
+
+.card-text,
+.card-title {
+  color: #000 !important;
+}

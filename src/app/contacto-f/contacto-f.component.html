@@ -1,22 +1,23 @@
-
-
 <div class="container">
-    <div class="contact-form-wrapper d-flex justify-content-center">
-      <form (ngSubmit)="onSubmit()" class="contact-form">
-        <h5 class="title">Contactanos!</h5>
-       
-        <div>
-          <input type="text" class="form-control rounded border-white mb-3 form-input" [(ngModel)]="name" name="name" placeholder="Tu nombre" required>
-        </div>
-        <div>
-          <input type="email" class="form-control rounded border-white mb-3 form-input" [(ngModel)]="email" name="email" placeholder="Tu correo" required>
-        </div>
-        <div>
-          <textarea class="form-control rounded border-white mb-3 form-text-area" [(ngModel)]="message" name="message" rows="5" cols="30" placeholder="Mensaje" required></textarea>
-        </div>
-        <div class="submit-button-wrapper">
-          <button type="submit">Enviar</button>
-        </div>
-      </form>
-    </div>
+  <div class="contact-form-wrapper d-flex justify-content-center">
+    <form (ngSubmit)="onSubmit()" class="contact-form">
+      <h5 class="title">Contactanos!</h5>
+
+      <div>
+        <input type="text" class="form-control rounded border-white mb-3 form-input" [(ngModel)]="name" name="name"
+          placeholder="Tu nombre" required>
+      </div>
+      <div>
+        <input type="email" class="form-control rounded border-white mb-3 form-input" [(ngModel)]="email" name="email"
+          placeholder="Tu correo" required>
+      </div>
+      <div>
+        <textarea class="form-control rounded border-white mb-3 form-text-area" [(ngModel)]="message" name="message"
+          rows="5" cols="30" placeholder="Mensaje" required></textarea>
+      </div>
+      <div class="submit-button-wrapper">
+        <button type="submit" class="btn btn-danger">Enviar</button>
+      </div>
+    </form>
   </div>
+</div>
