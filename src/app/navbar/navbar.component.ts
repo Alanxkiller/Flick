@@ -38,7 +38,7 @@ export class NavbarComponent {
         console.log('Email: ', userEmail);
         console.log('User: ', user);
         this.isLogged = true;
-        if (userEmail == 'alanaxel121@gmail.com')
+        if (userEmail == 'semamaanal5@gmail.com')
         {
           this.admin = true;
         } 
