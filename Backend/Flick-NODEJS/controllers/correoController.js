@@ -22,11 +22,11 @@ const envioCorreo = (req = request, resp = response) => {
     const opciones = {
         from: 'flickcorreos@gmail.com',
         to: 'semamaanal5@gmail.com', // Replace with recipient email address
-        subject: 'Tengo una duda!',
+        subject: 'Sistema de envio de correos',
         text: `
         Nombre: ${name}
         Correo: ${email}
-        Mi duda es: ${message}
+        El mensaje recibido es: ${message}
       `
     };
 

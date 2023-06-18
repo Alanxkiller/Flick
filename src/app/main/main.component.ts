@@ -107,7 +107,7 @@ export class MainComponent implements OnInit {
       if (user) {
         // User is signed in, see docs for a list of available properties
         // https://firebase.google.com/docs/reference/js/firebase.User
-        const userEmail = user.email?.toString;
+        const userEmail = user.email;
         const userUID = user.uid;
         localStorage.setItem("userUID", userUID);
         console.log('Email: ', userEmail);
