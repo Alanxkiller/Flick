@@ -33,6 +33,8 @@ import { MisCitasComponent } from './mis-citas/mis-citas.component';
 import { BarChartComponent } from './bar-chart/bar-chart.component';
 import { LineChartComponent } from './line-chart/line-chart.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
+import { LetrasMayusculasPipe } from './letras-mayusculas.pipe';
+import { NumerosLetrasPipe } from './numeros-letras.pipe';
 
 
 @NgModule({
@@ -54,6 +56,8 @@ import { ServiceWorkerModule } from '@angular/service-worker';
     MisCitasComponent,
     BarChartComponent,
     LineChartComponent,
+    LetrasMayusculasPipe,
+    NumerosLetrasPipe,
   ],
   imports: [
     BrowserModule,
